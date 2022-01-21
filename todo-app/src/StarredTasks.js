@@ -4,7 +4,7 @@ import TaskList from "./TaskList";
 import useFetch from "./useFetch";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Home = () => {
+const StarredTasks = () => {
   const {data: tasks, isPending, error} = useFetch('http://localhost:8000/tasks');
 
   return (
@@ -14,11 +14,11 @@ const Home = () => {
       {/*blogs is null intially so the below statement only renders when blogs data has been fetched!*/}
       {/* <AddTask/>
       <br></br> */}
-      <h3>Tasks</h3>
+      <h3>Starred Tasks</h3>
       <div></div>
-      {tasks && <TaskList tasks = {tasks} type = "normal"/>}
+      {tasks && <TaskList tasks = {tasks} type = "starred"/>}
     </div>
   );
 }
  
-export default Home;
+export default StarredTasks;

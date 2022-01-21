@@ -1,0 +1,27 @@
+{
+  "tasks": [
+    {
+      "title": "random task",
+      "assignee": "Reuben",
+      "isDone": false,
+      "isStarred": true,
+      "isInProgress": false,
+      "deadline": "2022-01-19T18:30:00.000Z",
+      "id": 1
+    },
+    {
+      "title": "new task",
+      "isDone": true,
+      "isStarred": false,
+      "isInProgress": true,
+      "id": 2
+    }
+  ],
+  "deleted-tasks": [
+    {
+      "title": "random",
+      "isDone": false,
+      "id": 1
+    }
+  ]
+}
