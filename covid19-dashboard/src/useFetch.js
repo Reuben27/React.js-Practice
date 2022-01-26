@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import {useNavigate} from 'react-router-dom';
 import moment from 'moment';
 
 //custom hooks in react need to start with 'use'
@@ -6,6 +7,7 @@ const useFetch = (url) =>{
     const [data, setData] = useState(null);
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(true);
+    const navigate = useNavigate();
   
     useEffect(() => {
       fetch(url, {
@@ -50,8 +52,17 @@ const useFetch = (url) =>{
           }
 
           setData(zero); //State Hook wont cause infinte loops here due to the empty dependency [] in the useEffect.
-          setIsPending(false);
           setError(null);
+
+          // console.log(blog);
+          fetch('http://localhost:8000/coviddata', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(result[0]),
+          }).then(() => {
+            setIsPending(false);
+            navigate('/');
+          });
         });
 
       })
@@ -59,7 +70,7 @@ const useFetch = (url) =>{
         setError(err.message);
         setIsPending(false);
       });
-    }, [url]);
+    }, [navigate, url]);
 
     return {data, isPending, error};
 }

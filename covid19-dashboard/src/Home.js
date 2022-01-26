@@ -2,17 +2,21 @@ import React  from "react";
 import useFetch from "./useFetch";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {Container} from 'react-bootstrap'
 
 const Home = () => {
   const {data: covidData, isPending, error} = useFetch("https://covid-19-data.p.rapidapi.com/totals?format=json");
 
   return (
-    <div className = "container">
+    <div style={{
+      position: 'absolute', left: '50%', top: '50%',
+      transform: 'translate(-50%, -50%)'
+      }}>
       {error && <div>{error}</div>}
       {isPending && <div>Loading....</div>}
       <h3>Covid Dashboard</h3>
       <br></br>
-      <div classname = "covid-data"> {covidData && 
+      <Container fluid> {covidData && 
           <LineChart
             width={800}
             height={300}
@@ -29,7 +33,7 @@ const Home = () => {
             <Line type="monotone" dataKey="critical" stroke="blue" />
             <Line type="monotone" dataKey="deaths" stroke="red" />
           </LineChart>}
-      </div>
+      </Container>
     </div>
   );
 }
